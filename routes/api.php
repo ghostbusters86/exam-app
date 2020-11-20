@@ -17,3 +17,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('question', 'QuestionApiController@view');
+Route::post('add-question', 'QuestionApiController@Create');
+
+// Route::group([
+//     'prefix' => 'exam/api', 
+//     'middleware' => ['auth:api'], 
+//     'namespace' => 'App\Http\Controllers\Api'
+// ], function() {
+
+    
+
+// });
