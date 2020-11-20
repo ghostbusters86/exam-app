@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Question;
 use Illuminate\Http\Request;
+use App\Http\Requests\AskQuestionRequest;
 use Illuminate\Support\Facades\Session;
-
 
 class QuestionController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return view('welcome');
@@ -19,32 +24,45 @@ class QuestionController extends Controller
         return view('start');
     }
 
-    public function addQuestion(Request $request)
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-        $validate = $request->validate([
-            'question' => 'required',
-            'opa' => 'required',
-            'opb' => 'required',
-            'opc' => 'required',
-            'opd' => 'required',
-            'ope' => 'required',
-            'answer' => 'required',
-        ]);
+        //
+    }
 
-        $ques = new Question();
-        $ques->question = $request->question;
-        $ques->a = $request->opa;
-        $ques->b = $request->opb;
-        $ques->c = $request->opc;
-        $ques->d = $request->opd;
-        $ques->e = $request->ope;
-        $ques->answer = $request->answer;
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(AskQuestionRequest $request, Question $question)
+    {
+        // $this->authorize('create', $question);
 
-        $ques->save();
+        $request->user()->questions()->create($request->only(
+            'question', 
+            'a',
+            'b',
+            'c',
+            'd',
+            'e',
+            'answer'
+        ));
 
         return redirect('questions')->with('success', 'Question has added successfuly!');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show()
     {
         $ques = Question::all();
@@ -52,8 +70,28 @@ class QuestionController extends Controller
         return view('questions')->with(['questions' => $ques]);
     }
 
-    public function updateQuestion(Request $request)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Question $question)
+    {
+        // $this->authorize('update', $question);
+
         $request->validate($this->getRules());
 
         $ques = Question::findOrFail($request->id);
@@ -67,18 +105,26 @@ class QuestionController extends Controller
     {
         return [
             'question' => 'required',
-            'opa' => 'required',
-            'opb' => 'required',
-            'opc' => 'required',
-            'opd' => 'required',
-            'ope' => 'required',
+            'a' => 'required',
+            'b' => 'required',
+            'c' => 'required',
+            'd' => 'required',
+            'e' => 'required',
             'answer' => 'required',
             'id' => 'required',
         ];
     }
 
-    public function deleteQuestion(Request $request)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, Question $question)
     {
+        // $this->authorize('delete', $question);
+
         $request->validate([
             'id' => 'required'
         ]);
@@ -104,12 +150,6 @@ class QuestionController extends Controller
         $nextq = Session::get('nextq');
         $wrongans = Session::get('wrongans');
         $correctans = Session::get('correctans');
-        
-        // $validate = $request->validate([
-        //     'ans' => 'required',
-        //     'dbans' => 'required',
-        // ]);
-        // dd("ok");
             
         $nextq +=1;
 

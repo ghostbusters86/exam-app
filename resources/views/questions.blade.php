@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <link rel="stylesheet" href="files/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="files/my.css" type="text/css">
 
@@ -100,17 +103,17 @@
                                             <input name="question" value="{{ $item->question }}" type="text" class="form-control">
                                         </div>
                                         <div class="row" style="padding: 10px">
-                                            <div class="col-md-6">A: <input value="{{ $item->a }}" name="opa"></div>
-                                            <div class="col-md-6">B: <input value="{{ $item->b }}" name="opb"></div>
+                                            <div class="col-md-6">A: <input value="{{ $item->a }}" name="a"></div>
+                                            <div class="col-md-6">B: <input value="{{ $item->b }}" name="b"></div>
                                         </div>
                                         
                                         <div class="row" style="padding: 10px">
-                                            <div class="col-md-6">C: <input value="{{ $item->c }}" name="opc"></div>
-                                            <div class="col-md-6">D: <input value="{{ $item->d }}" name="opd"></div>
+                                            <div class="col-md-6">C: <input value="{{ $item->c }}" name="c"></div>
+                                            <div class="col-md-6">D: <input value="{{ $item->d }}" name="d"></div>
                                         </div>
 
                                         <div class="row" style="padding: 10px">
-                                            <div class="col-md-6">E: <input value="{{ $item->e }}" name="ope"></div>
+                                            <div class="col-md-6">E: <input value="{{ $item->e }}" name="e"></div>
                                             <div class="col-md-6"></div>
                                         </div>
 
@@ -194,17 +197,17 @@
                     <input name="question" type="text" class="form-control" required>
                 </div>
                 <div class="row" style="padding: 10px">
-                    <div class="col-md-6">A: <input name="opa" required></div>
-                    <div class="col-md-6">B: <input name="opb" required></div>
+                    <div class="col-md-6">A: <input name="a" required></div>
+                    <div class="col-md-6">B: <input name="b" required></div>
                 </div>
                 
                 <div class="row" style="padding: 10px">
-                    <div class="col-md-6">C: <input name="opc" required></div>
-                    <div class="col-md-6">D: <input name="opd" required></div>
+                    <div class="col-md-6">C: <input name="c" required></div>
+                    <div class="col-md-6">D: <input name="d" required></div>
                 </div>
 
                 <div class="row" style="padding: 10px">
-                    <div class="col-md-6">E: <input name="ope" required></div>
+                    <div class="col-md-6">E: <input name="e" required></div>
                     <div class="col-md-6"></div>
                 </div>
 
@@ -236,3 +239,5 @@
 <script src="files/jquery.min.js"></script>
 <script src="files/popperjs.min.js"></script>
 <script src="files/bootstrap.min.js"></script>
+
+@endsection

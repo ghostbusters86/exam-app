@@ -16,13 +16,16 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->string('question')->default('0')->nullable();
-            $table->string('opa')->default('0')->nullable();
-            $table->string('opb')->default('0')->nullable();
-            $table->string('opc')->default('0')->nullable();
-            $table->string('opd')->default('0')->nullable();
-            $table->string('ope')->default('0')->nullable();
+            $table->string('a')->default('0')->nullable();
+            $table->string('b')->default('0')->nullable();
+            $table->string('c')->default('0')->nullable();
+            $table->string('d')->default('0')->nullable();
+            $table->string('e')->default('0')->nullable();
             $table->string('answer')->default('0')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
