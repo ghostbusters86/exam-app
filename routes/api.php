@@ -21,12 +21,3 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('question', 'QuestionApiController@view');
 Route::post('add-question', 'QuestionApiController@Create');
 
-// Route::group([
-//     'prefix' => 'exam/api', 
-//     'middleware' => ['auth:api'], 
-//     'namespace' => 'App\Http\Controllers\Api'
-// ], function() {
-
-    
-
-// });
