@@ -17,8 +17,12 @@ Route::any('/', 'QuestionController@index');
 Route::any('start', 'QuestionController@start');
 Route::any('submit-ans', 'QuestionController@submitAns');
 Route::any('ans-page', 'QuestionController@anspage');
-Route::any('add-question', 'QuestionController@addQuestion');
-Route::any('update-question', 'QuestionController@updateQuestion');
-Route::any('delete-question', 'QuestionController@deleteQuestion');
+Route::any('add-question', 'QuestionController@store');
+Route::any('update-question', 'QuestionController@update');
+Route::any('delete-question', 'QuestionController@destroy');
 Route::any('questions', 'QuestionController@show');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

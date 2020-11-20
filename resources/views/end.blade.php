@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <link rel="stylesheet" href="files/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="files/my.css" type="text/css">
 
@@ -22,3 +25,4 @@
 <script src="files/popperjs.min.js"></script>
 <script src="files/bootstrap.min.js"></script>
 
+@endsection
